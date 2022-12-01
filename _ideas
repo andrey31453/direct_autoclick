@@ -1,0 +1,30 @@
+console.log('browser.pages.length: ', (await browser.pages()).length)
+page = await (await browser.pages())[1].bringToFront()
+
+//save target of original page to know that this was the opener:
+const page_target = page.target()
+//execute click on first tab that triggers opening of new tab:
+await page.click('#selector')
+//check that the first page opened this new page:
+const new_target = await browser.waitForTarget(
+	(target) => target.opener() === page_target
+)
+//get the new page object:
+const new_page = await new_target.page()
+
+
+
+черный директ
+директ листенер -- следить за стоимостью клика
+
+акшин - возврат на странице -- кнтрл шифт т
+mouse move = rewrite -- random fixed speed
+
+query выбор предложений поисковика
+
+close all pages
+
+// puppeteer stealth
+// puppeteer fingerprint2
+// puppeteer fingerprint js
+// devtools // true / false
